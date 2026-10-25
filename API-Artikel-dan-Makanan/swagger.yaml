@@ -1,0 +1,280 @@
+openapi: 3.0.0
+info:
+  title: Mentalys Article API
+  description: API for managing mental health articles
+  version: 1.0.0
+  contact:
+    name: Mentalys Team
+
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Server masih dalam tahap pengembangan
+
+tags:
+  - name: Articles
+    description: Operations about articles
+
+paths:
+  /article:
+    get:
+      tags:
+        - Articles
+      summary: Get all articles
+      description: Retrieve articles with pagination and filtering options
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Page number
+        - in: query
+          name: perPage
+          schema:
+            type: integer
+            default: 10
+          description: Number of items per page
+        - in: query
+          name: mental_state
+          schema:
+            type: string
+            enum:
+              - MDD
+              - ASD
+              - Loneliness
+              - bipolar
+              - anxiety
+              - PTSD
+              - 'sleep disord'
+              - 'psychot depresn'
+              - ED
+              - ADHD
+              - PDD
+              - OCD
+          description: Filter by mental state
+        - in: query
+          name: author
+          schema:
+            type: string
+          description: Filter by author name (case insensitive)
+        - in: query
+          name: title
+          schema:
+            type: string
+          description: Filter by article title (case insensitive)
+        - in: query
+          name: tags
+          schema:
+            type: array
+            items:
+              type: string
+          description: Filter by tags
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: 'null'
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Article'
+                      perPage:
+                        type: integer
+                      page:
+                        type: integer
+                      totalPages:
+                        type: integer
+                      totalData:
+                        type: integer
+                      next:
+                        type: string
+                        nullable: true
+                      prev:
+                        type: string
+                        nullable: true
+
+    post:
+      tags:
+        - Articles
+      summary: Create a new article
+      description: Add a new article with image and HTML content
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Article title
+                image:
+                  type: string
+                  format: binary
+                  description: Article image file (max 5MB)
+                html:
+                  type: string
+                  format: binary
+                  description: HTML content file
+                mental_state:
+                  type: string
+                  enum:
+                    - MDD
+                    - ASD
+                    - Loneliness
+                    - bipolar
+                    - anxiety
+                    - PTSD
+                    - 'sleep disord'
+                    - 'psychot depresn'
+                    - ED
+                    - ADHD
+                    - PDD
+                    - OCD
+                author:
+                  type: string
+                summary:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - title
+                - image
+                - html
+                - mental_state
+                - author
+                - summary
+      responses:
+        '201':
+          description: Article created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: 'null'
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Article'
+        '400':
+          description: Invalid input
+        '415':
+          description: Unsupported media type
+
+  /article/{id}:
+    get:
+      tags:
+        - Articles
+      summary: Get article by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Article ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: 'null'
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Article'
+        '404':
+          description: Article not found
+        '400':
+          description: Invalid ID format
+
+    delete:
+      tags:
+        - Articles
+      summary: Delete article
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Article ID
+      responses:
+        '200':
+          description: Article deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: 'null'
+                  message:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Article'
+        '404':
+          description: Article not found
+        '400':
+          description: Invalid ID format
+
+components:
+  schemas:
+    Article:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        urlImage:
+          type: string
+        contentHtml:
+          type: string
+        mental_state:
+          type: string
+          enum:
+            - MDD
+            - ASD
+            - Loneliness
+            - bipolar
+            - anxiety
+            - PTSD
+            - 'sleep disord'
+            - 'psychot depresn'
+            - ED
+            - ADHD
+            - PDD
+            - OCD
+        author:
+          type: string
+        summary:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
