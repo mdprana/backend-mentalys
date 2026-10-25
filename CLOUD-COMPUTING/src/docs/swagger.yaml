@@ -1,0 +1,1123 @@
+openapi: 3.0.0
+info:
+  title: Mentalys REST API
+  version: 0.0.1
+  description: REST API for Mentalys Application developed by Abdi Setiawan - c179b4ky0013
+  contact:
+    name: Abdi Setiawan
+    email: c179b4ky0013@bangkit.academy
+
+servers:
+  - url: http://localhost:3000/api
+    description: Local development server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UserProfile:
+      type: object
+      required:
+        - username
+        - profile_pic
+        - firstName
+        - lastName
+        - full_name
+        - birth_date
+        - location
+        - gender
+        - phoneNumber
+      properties:
+        username:
+          type: string
+          description: Unique username for the user
+          example: johndoe123
+          minLength: 5
+          maxLength: 30
+
+        profile_pic:
+          type: string
+          description: URL of the user's profile picture
+          example: https://storage.googleapis.com/mentalys-bucket/profile_images/user123/profile.jpg
+          nullable: true
+
+        firstName:
+          type: string
+          description: First name of the user
+          example: John
+          minLength: 1
+          maxLength: 50
+
+        lastName:
+          type: string
+          description: Last name of the user
+          example: Doe
+          minLength: 1
+          maxLength: 50
+
+        full_name:
+          type: string
+          description: Full name of the user
+          example: John Doe
+          minLength: 3
+          maxLength: 50
+
+        birth_date:
+          type: string
+          format: date
+          description: Birth date of the user
+          example: 1990-01-01
+
+        location:
+          type: string
+          description: Location of the user
+          example: Jakarta, Indonesia
+
+        gender:
+          type: string
+          description: Gender of the user
+          enum:
+            - MALE
+            - FEMALE
+          example: MALE
+
+        phoneNumber:
+          type: string
+          description: Phone number of the user
+          example: +6281234567890
+
+        created_at:
+          type: string
+          format: date-time
+          description: Time when the profile was created
+          example: 2023-06-15T10:30:00Z
+
+        updated_at:
+          type: string
+          format: date-time
+          description: Time when the profile was last updated
+          example: 2023-06-15T10:30:00Z
+
+    UserRegistration:
+      type: object
+      required:
+        - username
+        - firstName
+        - lastName
+        - phoneNumber
+        - birth_date
+        - email
+        - password
+        - confirmPassword
+      properties:
+        username:
+          type: string
+          minLength: 5
+          maxLength: 30
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 50
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 50
+        phoneNumber:
+          type: string
+        birth_date:
+          type: string
+          format: date
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+        confirmPassword:
+          type: string
+
+    UserLogin:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+
+    PasswordReset:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+
+    ProfileRequestBody:
+      type: object
+      required:
+        - username
+        - profile_pic
+        - full_name
+        - phoneNumber
+        - firstName
+        - lastName
+        - birth_date
+        - location
+        - gender
+      properties:
+        username:
+          type: string
+          minLength: 5
+          maxLength: 30
+          description: Unique username for the user
+        profile_pic:
+          type: string
+          format: binary
+          description: Profile picture file (image)
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: First name of the user
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: Last name of the user
+        phoneNumber:
+          type: string
+          description: Phone number of the user
+        full_name:
+          type: string
+          minLength: 3
+          maxLength: 50
+          description: Full name of the user
+        birth_date:
+          type: string
+          format: date
+          description: Birth date of the user
+        location:
+          type: string
+          description: Location of the user
+        gender:
+          type: string
+          enum: [MALE, FEMALE]
+          description: Gender of the user
+
+    ProfileUpdateRequestBody:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 5
+          maxLength: 30
+          description: Unique username for the user
+        profile_pic:
+          type: string
+          format: binary
+          description: Profile picture file (image) (optional)
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: First name of the user
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: Last name of the user
+        phoneNumber:
+          type: string
+          description: Phone number of the user
+        birth_date:
+          type: string
+          format: date
+          description: Birth date of the user
+        location:
+          type: string
+          description: Location of the user
+        gender:
+          type: string
+          enum: [MALE, FEMALE]
+          description: Gender of the user
+
+    QuizInputData:
+      type: object
+      required:
+        - age
+        - feeling_nervous
+        - panic
+        - breathing_rapidly
+        - sweating
+        - trouble_in_concentration
+        - having_trouble_in_sleeping
+        - having_trouble_with_work
+        - hopelessness
+        - anger
+        - over_react
+        - change_in_eating
+        - suicidal_thought
+        - feeling_tired
+        - close_friend
+        - social_media_addiction
+        - weight_gain
+        - introvert
+        - popping_up_stressful_memory
+        - having_nightmares
+        - avoids_people_or_activities
+        - feeling_negative
+        - trouble_concentrating
+        - blaming_yourself
+        - hallucinations
+        - repetitive_behaviour
+        - seasonally
+        - increased_energy
+      properties:
+        age:
+          type: string
+          description: Age of the user
+        feeling_nervous:
+          type: boolean
+          description: Feeling nervous
+        panic:
+          type: boolean
+          description: Experiencing panic attacks
+        breathing_rapidly:
+          type: boolean
+          description: Breathing rapidly
+        sweating:
+          type: boolean
+          description: Excessive sweating
+        trouble_in_concentration:
+          type: boolean
+          description: Trouble concentrating
+        having_trouble_in_sleeping:
+          type: boolean
+          description: Trouble sleeping
+        having_trouble_with_work:
+          type: boolean
+          description: Trouble with work
+        hopelessness:
+          type: boolean
+          description: Feeling hopeless
+        anger:
+          type: boolean
+          description: Experiencing anger issues
+        over_react:
+          type: boolean
+          description: Overreacting to situations
+        change_in_eating:
+          type: boolean
+          description: Change in eating habits
+        suicidal_thought:
+          type: boolean
+          description: Having suicidal thoughts
+        feeling_tired:
+          type: boolean
+          description: Feeling tired or fatigued
+        close_friend:
+          type: boolean
+          description: Having a close friend
+        social_media_addiction:
+          type: boolean
+          description: Addiction to social media
+        weight_gain:
+          type: boolean
+          description: Experiencing weight gain
+        introvert:
+          type: boolean
+          description: Identifying as an introvert
+        popping_up_stressful_memory:
+          type: boolean
+          description: Popping up stressful memories
+        having_nightmares:
+          type: boolean
+          description: Having nightmares
+        avoids_people_or_activities:
+          type: boolean
+          description: Avoiding people or activities
+        feeling_negative:
+          type: boolean
+          description: Feeling negative emotions
+        trouble_concentrating:
+          type: boolean
+          description: Trouble concentrating
+        blaming_yourself:
+          type: boolean
+          description: Blaming yourself for problems
+        hallucinations:
+          type: boolean
+          description: Experiencing hallucinations
+        repetitive_behaviour:
+          type: boolean
+          description: Engaging in repetitive behavior
+        seasonally:
+          type: boolean
+          description: Seasonal mood changes
+        increased_energy:
+          type: boolean
+          description: Experiencing increased energy
+
+    AudioInputData:
+      type: object
+      required:
+        - originalname
+        - mimetype
+        - size
+      properties:
+        originalname:
+          type: string
+          description: The original name of the uploaded audio file
+        mimetype:
+          type: string
+          description: The MIME type of the uploaded audio file
+        size:
+          type: integer
+          description: The size of the uploaded audio file in bytes
+
+    HandwritingInputData:
+      type: object
+      required:
+        - originalname
+        - mimetype
+        - size
+      properties:
+        originalname:
+          type: string
+          description: The original name of the uploaded image file
+        mimetype:
+          type: string
+          description: The MIME type of the uploaded image file
+        size:
+          type: integer
+          description: The size of the uploaded image file in bytes
+
+    QuizResponse:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result of the quiz analysis
+        recommendations:
+          type: array
+          items:
+            type: string
+          description: List of recommendations based on the quiz results
+
+    AudioResponse:
+      type: object
+      properties:
+        prediction:
+          type: string
+          description: Prediction result from the audio analysis
+
+    HandwritingResponse:
+      type: object
+      properties:
+        prediction:
+          type: string
+          description: Prediction result from the handwriting analysis
+
+paths:
+  /auth/register:
+    post:
+      summary: User Registration
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+      responses:
+        '201':
+          description: Registration Successful
+        '400':
+          description: Validation Error
+        '409':
+          description: Email Already Exists
+
+  /auth/login:
+    post:
+      summary: User Login
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Login Successful
+        '401':
+          description: Invalid Credentials
+        '403':
+          description: Email Not Verified
+
+  /auth/reset-password:
+    post:
+      summary: Password Reset Request
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordReset'
+      responses:
+        '200':
+          description: Password Reset Email Sent
+        '404':
+          description: Email Not Registered
+
+  /user:
+    put:
+      summary: Update User Profile
+      tags:
+        - Profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateRequestBody'
+      responses:
+        '200':
+          description: Profile Updated Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: object
+        '400':
+          description: Validation Error
+        '404':
+          description: User Not Found
+
+    get:
+      summary: Get User Profile
+      tags:
+        - Profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Profile Retrieved Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    $ref: '#/components/schemas/UserProfile'
+        '401':
+          description: Unauthorized (Invalid or missing token)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Unauthorized access
+        '404':
+          description: Profile Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: Profile not found
+
+  /ml/audio:
+    post:
+      summary: Upload Audio for Prediction
+      tags:
+        - Machine Learning
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Audio Processed Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioResponse'
+        '400':
+          description: Validation Error
+        '500':
+          description: Internal Server Error
+
+  /ml/quiz:
+    post:
+      summary: Submit Quiz Data for Analysis
+      tags:
+        - Machine Learning
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuizInputData'
+      responses:
+        '200':
+          description: Quiz Data Processed Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizResponse'
+        '400':
+          description: Validation Error
+        '500':
+          description: Internal Server Error
+
+  /ml/handwriting:
+    post:
+      summary: Upload Handwriting for Prediction
+      tags:
+        - Machine Learning
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Handwriting Processed Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandwritingResponse'
+        '400':
+          description: Validation Error
+        '500':
+          description: Internal Server Error
+
+  /ml/history:
+    get:
+      summary: Retrieve Machine Learning Request History
+      description: >
+        Endpoint to retrieve the history of machine learning requests made by the authenticated user.
+      tags:
+        - Machine Learning History
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: type
+          required: true
+          schema:
+            type: string
+            enum:
+              - quiz_requests
+              - handwriting_requests
+              - audio_requests
+          description: Type of machine learning request to retrieve history for.
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Page number for pagination.
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Number of items per page.
+          required: false
+        - in: query
+          name: startDate
+          schema:
+            type: string
+            format: date
+          description: Start date for filtering history (ISO 8601 format).
+          required: false
+        - in: query
+          name: endDate
+          schema:
+            type: string
+            format: date
+          description: End date for filtering history (ISO 8601 format).
+          required: false
+        - in: query
+          name: sortBy
+          schema:
+            type: string
+            enum:
+              - timestamp
+              - prediction
+            default: timestamp
+          description: Column to sort the history by.
+          required: false
+        - in: query
+          name: sortOrder
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+          description: Sort order (ascending or descending).
+          required: false
+      responses:
+        '200':
+          description: Machine learning request history retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique request ID.
+                          example: 'unique_request_id'
+                        prediction:
+                          type: object
+                          properties:
+                            result:
+                              type: string
+                              description: Prediction result.
+                              example: 'Anxiety'
+                            confidence:
+                              type: number
+                              format: float
+                              description: Confidence level of the prediction.
+                              example: 0.85
+                        inputData:
+                          type: object
+                          description: Input data used for the prediction.
+                          additionalProperties: true
+                        timestamp:
+                          type: string
+                          format: date-time
+                          description: Time when the request was made.
+                          example: '2023-06-15T10:30:00Z'
+                        metadata:
+                          type: object
+                          description: Additional metadata related to the request.
+                          additionalProperties: true
+                  page:
+                    type: integer
+                    description: Current page number.
+                    example: 1
+                  limit:
+                    type: integer
+                    description: Number of items per page.
+                    example: 10
+                  total:
+                    type: integer
+                    description: Total number of items.
+                    example: 50
+                  totalPages:
+                    type: integer
+                    description: Total number of pages.
+                    example: 5
+        '400':
+          description: Parameter validation error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: 'Validation error'
+        '401':
+          description: Unauthorized (Invalid or missing token).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: 'Unauthorized - No token provided'
+
+  /ml/all-history:
+    get:
+      summary: Retrieve All Machine Learning Request History
+      tags:
+        - Machine Learning History
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Page number for pagination.
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Number of items per page.
+          required: false
+        - in: query
+          name: startDate
+          schema:
+            type: string
+            format: date
+          description: Start date for filtering history (ISO 8601 format).
+          required: false
+        - in: query
+          name: endDate
+          schema:
+            type: string
+            format: date
+          description: End date for filtering history (ISO 8601 format).
+          required: false
+        - in: query
+          name: sortBy
+          schema:
+            type: string
+            enum:
+              - timestamp
+            default: timestamp
+          description: Column to sort the history by.
+          required: false
+        - in: query
+          name: sortOrder
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+          description: Sort order (ascending or descending).
+          required: false
+      responses:
+        '200':
+          description: All ML request history retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  history:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique request ID.
+                          example: 'unique_request_id'
+                        type:
+                          type: string
+                          description: Type of ML request.
+                          example: 'quiz_requests'
+                        prediction:
+                          type: object
+                          properties:
+                            result:
+                              type: string
+                              description: Prediction result.
+                              example: 'Anxiety'
+                            confidence:
+                              type: number
+                              format: float
+                              description: Confidence level of the prediction.
+                              example: 0.85
+                        inputData:
+                          type: object
+                          description: Input data used for the prediction.
+                          additionalProperties: true
+                        timestamp:
+                          type: string
+                          format: date-time
+                          description: Time when the request was made.
+                          example: '2023-06-15T10:30:00Z'
+                        metadata:
+                          type: object
+                          description: Additional metadata related to the request.
+                          additionalProperties: true
+                  page:
+                    type: integer
+                    description: Current page number.
+                    example: 1
+                  limit:
+                    type: integer
+                    description: Number of items per page.
+                    example: 10
+                  total:
+                    type: integer
+                    description: Total number of items.
+                    example: 50
+                  totalPages:
+                    type: integer
+                    description: Total number of pages.
+                    example: 5
+        '400':
+          description: Parameter validation error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: 'Validation error'
+        '401':
+          description: Unauthorized (Invalid or missing token).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: fail
+                  message:
+                    type: string
+                    example: 'Unauthorized - No token provided'
+
+  /psychiatrists:
+    get:
+      tags:
+        - Psychiatrists
+      summary: Mendapatkan daftar psikiater
+      description: Mengambil semua psikiater yang tersedia.
+      responses:
+        '200':
+          description: Daftar psikiater berhasil diambil
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "5GvRbLGEeAsMNhLwOHv3"
+                        fullName:
+                          type: string
+                          example: "Dr. Tifa Lockhart"
+                        title:
+                          type: string
+                          example: "MD, Psychiatry"
+                        mainRole:
+                          type: string
+                          example: "Psychiatric Consultant"
+                        consultationFee:
+                          type: number
+                          example: 150000
+        '500':
+          description: Terjadi kesalahan saat membaca data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error reading data"
+
+  /psychiatrists/{id}:
+    get:
+      tags:
+        - Psychiatrists Details
+      summary: Mendapatkan detail psikiater
+      description: Mengambil informasi detail psikiater berdasarkan ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID psikiater yang ingin diambil
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detail psikiater berhasil diambil
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: "5GvRbLGEeAsMNhLwOHv3"
+                      fullName:
+                        type: string
+                        example: "Dr. Tifa Lockhart"
+                      title:
+                        type: string
+                        example: "MD, Psychiatry"
+                      aboutMe:
+                        type: string
+                        example: "Dr. Tifa is a compassionate psychiatrist with over a decade of experience in mental health care."
+                      consultationFee:
+                        type: number
+                        example: 150000
+        '404':
+          description: Psikiater tidak ditemukan
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Psychiatrist not found"
+        '500':
+          description: Terjadi kesalahan saat membaca data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error reading data"
+
+  /midtrans/charge:
+    post:
+      tags:
+        - Midtrans
+      summary: Membuat transaksi Midtrans
+      description: Mengirim permintaan untuk membuat transaksi menggunakan Midtrans.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                psychiatristId:
+                  type: string
+                  example: "5GvRbLGEeAsMNhLwOHv3"
+                phoneNumber:
+                  type: string
+                  example: "+62123456789"
+      responses:
+        '200':
+          description: Transaksi berhasil dibuat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                        example: "order-1234567890-uid"
+                      paymentUrl:
+                        type: string
+                        example: "https://payment.midtrans.com/..."
+        '400':
+          description: Permintaan tidak valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Missing required fields"
+        '500':
+          description: Terjadi kesalahan saat memproses transaksi
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error processing transaction"

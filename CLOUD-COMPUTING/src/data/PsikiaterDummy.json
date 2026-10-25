@@ -1,0 +1,309 @@
+[
+  {
+    "id": "5GvRbLGEeAsMNhLwOHv3",
+    "fullName": "Dr. Tifa Lockhart",
+    "title": "MD, Psychiatry",
+    "mainRole": "Psychiatric Consultant",
+    "specializations": ["Child Psychiatry", "Addiction Therapy"],
+    "ratings": 4.8,
+    "reviewCount": 120,
+    "patientsCount": 200,
+    "experienceYears": 10,
+    "aboutMe": "Dr. Tifa is a compassionate psychiatrist with over a decade of experience in mental health care.",
+    "languages": ["English", "Bahasa Indonesia"],
+    "photoUrl": "https://example.com/photo1.jpg",
+    "education": [
+      {
+        "degree": "MD in Psychiatry",
+        "institution": "University of Indonesia",
+        "yearOfGraduation": 2010
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Monday",
+        "startTime": "09:00 AM",
+        "endTime": "05:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "startTime": "10:00 AM",
+        "endTime": "04:00 PM"
+      }
+    ],
+    "certifications": [
+      "Certified Cognitive Behavioral Therapist",
+      "Member of Indonesian Psychiatric Association"
+    ],
+    "location": {
+      "address": "Jl. Pahlawan No. 12, Magelang",
+      "latitude": "-7.470913",
+      "longitude": "110.217895"
+    },
+    "consultationFee": 150000,
+    "features": {
+      "bookAppointment": true,
+      "chat": true,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2024-12-10",
+        "timeSlots": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM"]
+      },
+      {
+        "date": "2024-12-11",
+        "timeSlots": ["09:00 AM - 10:00 AM", "3:00 PM - 4:00 PM"]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "0802745035",
+      "email": "dr.tifa.lockhart@example.com"
+    }
+  },
+  {
+    "id": "6HwScMHFeByNkMxPqIw4",
+    "fullName": "Dr. Cloud Strife",
+    "title": "MD, Psychiatry",
+    "mainRole": "Mental Health Specialist",
+    "specializations": ["Trauma Therapy", "PTSD Treatment"],
+    "ratings": 4.7,
+    "reviewCount": 95,
+    "patientsCount": 180,
+    "experienceYears": 8,
+    "aboutMe": "Dr. Cloud specializes in helping patients overcome traumatic experiences with compassionate care.",
+    "languages": ["English", "Japanese"],
+    "photoUrl": "https://example.com/photo2.jpg",
+    "education": [
+      {
+        "degree": "MD in Psychiatry",
+        "institution": "Tokyo Medical University",
+        "yearOfGraduation": 2012
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Wednesday",
+        "startTime": "08:00 AM",
+        "endTime": "04:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "startTime": "11:00 AM",
+        "endTime": "07:00 PM"
+      }
+    ],
+    "certifications": ["Certified EMDR Therapist", "Member of Japanese Psychiatric Association"],
+    "location": {
+      "address": "Shibuya 2-Chome, Tokyo",
+      "latitude": "35.658034",
+      "longitude": "139.701636"
+    },
+    "consultationFee": 350000,
+    "features": {
+      "bookAppointment": true,
+      "chat": false,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2024-12-12",
+        "timeSlots": ["09:00 AM - 10:30 AM", "3:00 PM - 4:30 PM"]
+      },
+      {
+        "date": "2024-12-13",
+        "timeSlots": ["10:00 AM - 11:30 AM", "4:00 PM - 5:30 PM"]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "0803456789",
+      "email": "dr.cloud.strife@example.com"
+    }
+  },
+  {
+    "id": "7JxTdNIGfCzOlNyRjJx5",
+    "fullName": "Dr. Aerith Gainsborough",
+    "title": "PhD, Clinical Psychology",
+    "mainRole": "Psychological Counselor",
+    "specializations": ["Relationship Counseling", "Anxiety Management"],
+    "ratings": 4.9,
+    "reviewCount": 150,
+    "patientsCount": 250,
+    "experienceYears": 12,
+    "aboutMe": "Dr. Aerith is dedicated to helping individuals navigate complex emotional landscapes with empathy and expertise.",
+    "languages": ["English", "Spanish"],
+    "photoUrl": "https://example.com/photo3.jpg",
+    "education": [
+      {
+        "degree": "PhD in Clinical Psychology",
+        "institution": "Universidad de Barcelona",
+        "yearOfGraduation": 2008
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Monday",
+        "startTime": "10:00 AM",
+        "endTime": "06:00 PM"
+      },
+      {
+        "day": "Friday",
+        "startTime": "09:00 AM",
+        "endTime": "05:00 PM"
+      }
+    ],
+    "certifications": [
+      "Certified Marriage and Family Therapist",
+      "International Association of Counseling Psychology"
+    ],
+    "location": {
+      "address": "Diagonal 123, Barcelona",
+      "latitude": "41.389925",
+      "longitude": "2.113517"
+    },
+    "consultationFee": 400000,
+    "features": {
+      "bookAppointment": true,
+      "chat": true,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2024-12-14",
+        "timeSlots": ["11:00 AM - 12:30 PM", "2:00 PM - 3:30 PM"]
+      },
+      {
+        "date": "2024-12-15",
+        "timeSlots": ["09:00 AM - 10:30 AM", "4:00 PM - 5:30 PM"]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "0804567890",
+      "email": "dr.aerith.gainsborough@example.com"
+    }
+  },
+  {
+    "id": "8KyUeOJHgDaPmOzSkKy6",
+    "fullName": "Dr. Barrett Wallace",
+    "title": "MD, Psychiatry",
+    "mainRole": "Addiction Specialist",
+    "specializations": ["Substance Abuse", "Group Therapy"],
+    "ratings": 4.6,
+    "reviewCount": 80,
+    "patientsCount": 150,
+    "experienceYears": 15,
+    "aboutMe": "Dr. Barrett provides comprehensive care for individuals struggling with addiction, focusing on holistic recovery.",
+    "languages": ["English", "Portuguese"],
+    "photoUrl": "https://example.com/photo4.jpg",
+    "education": [
+      {
+        "degree": "MD in Psychiatry",
+        "institution": "Universidade de São Paulo",
+        "yearOfGraduation": 2005
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Tuesday",
+        "startTime": "08:00 AM",
+        "endTime": "04:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "startTime": "11:00 AM",
+        "endTime": "07:00 PM"
+      }
+    ],
+    "certifications": [
+      "Certified Addiction Treatment Professional",
+      "Brazilian Psychiatric Association Member"
+    ],
+    "location": {
+      "address": "Avenida Paulista 1000, São Paulo",
+      "latitude": "-23.547879",
+      "longitude": "-46.635929"
+    },
+    "consultationFee": 250000,
+    "features": {
+      "bookAppointment": true,
+      "chat": false,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2024-12-16",
+        "timeSlots": ["10:00 AM - 11:30 AM", "3:00 PM - 4:30 PM"]
+      },
+      {
+        "date": "2024-12-17",
+        "timeSlots": ["09:00 AM - 10:30 AM", "4:00 PM - 5:30 PM"]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "0805678901",
+      "email": "dr.barrett.wallace@example.com"
+    }
+  },
+  {
+    "id": "9LzVfPKIhEbQnPzTlLz7",
+    "fullName": "Dr. Red XIII",
+    "title": "PhD, Neuropsychology",
+    "mainRole": "Cognitive Disorders Specialist",
+    "specializations": ["Neurodegenerative Diseases", "Cognitive Rehabilitation"],
+    "ratings": 4.7,
+    "reviewCount": 110,
+    "patientsCount": 175,
+    "experienceYears": 9,
+    "aboutMe": "Dr. Red XIII is passionate about understanding and treating complex neurological conditions with cutting-edge research.",
+    "languages": ["English", "German"],
+    "photoUrl": "https://example.com/photo5.jpg",
+    "education": [
+      {
+        "degree": "PhD in Neuropsychology",
+        "institution": "Heidelberg University",
+        "yearOfGraduation": 2013
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Thursday",
+        "startTime": "09:00 AM",
+        "endTime": "05:00 PM"
+      },
+      {
+        "day": "Friday",
+        "startTime": "10:00 AM",
+        "endTime": "06:00 PM"
+      }
+    ],
+    "certifications": [
+      "Certified Neuropsychological Rehabilitation Specialist",
+      "International Neuropsychological Society Member"
+    ],
+    "location": {
+      "address": "Berliner Straße 45, Heidelberg",
+      "latitude": "49.408497",
+      "longitude": "8.676790"
+    },
+    "consultationFee": 450000,
+    "features": {
+      "bookAppointment": true,
+      "chat": true,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2024-12-18",
+        "timeSlots": ["11:00 AM - 12:30 PM", "2:00 PM - 3:30 PM"]
+      },
+      {
+        "date": "2024-12-19",
+        "timeSlots": ["09:00 AM - 10:30 AM", "4:00 PM - 5:30 PM"]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "0806789012",
+      "email": "dr.red.xiii@example.com"
+    }
+  }
+]

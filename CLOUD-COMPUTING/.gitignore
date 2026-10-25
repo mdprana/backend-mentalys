@@ -1,0 +1,41 @@
+/node_modules
+/coverage
+/dist
+/build
+/prettier
+
+.DS_Store
+.package-lock.json
+
+.vscode
+.env
+logs
+serviceAccountKey.json
+
+# Prisma
+prisma/migrations/
+prisma/dev.db
+prisma/dev.db-journal
+prisma/.env
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# Visual Studio Code
+.vscode/
+
+# Coverage
+coverage/
