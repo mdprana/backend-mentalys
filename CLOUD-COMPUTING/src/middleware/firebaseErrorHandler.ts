@@ -23,6 +23,15 @@ const firebaseErrorHandler = (err: unknown, req: Request, res: Response, next: N
       case 'auth/weak-password':
         return next(AppError('Password terlalu lemah', 400))
 
+      case AuthErrorCodes.OPERATION_NOT_ALLOWED:
+      case 'auth/operation-not-allowed':
+        return next(
+          AppError(
+            'Metode login email belum aktif di Firebase. Aktifkan Email/Password atau Email link sign-in di Firebase Authentication.',
+            400
+          )
+        )
+
       case AuthErrorCodes.USER_DELETED:
       case 'auth/user-not-found':
         return next(AppError('Email atau password salah', 401))

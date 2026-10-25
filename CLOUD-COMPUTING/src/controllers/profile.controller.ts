@@ -6,8 +6,7 @@ import {
   profileUpdateValidationSchema
 } from '../validations/profile.validation'
 import { formatJoiError } from '../utils/joiValidation'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../config/firebase.config'
+import { admin, firebaseAdminReady } from '../config/firebase.config'
 import { AuthenticatedRequest } from '../types/AuthenticatedRequest.type'
 
 export const createProfile = async (
@@ -25,11 +24,12 @@ export const createProfile = async (
     const uid = req.user.uid
     const profileData: ProfileRequestRegisterBody = req.body
 
-    const usernameQuery = query(
-      collection(db, 'profiles'),
-      where('username', '==', profileData.username)
-    )
-    const usernameSnapshot = await getDocs(usernameQuery)
+    await firebaseAdminReady
+    const usernameSnapshot = await admin
+      .firestore()
+      .collection('profiles')
+      .where('username', '==', profileData.username)
+      .get()
 
     if (!usernameSnapshot.empty) {
       return res.status(400).json({
@@ -69,11 +69,12 @@ export const updateProfile = async (
     const uid = req.user.uid
     const profileData: Partial<ProfileRequestBody> = req.body
     if (profileData.username) {
-      const usernameQuery = query(
-        collection(db, 'profiles'),
-        where('username', '==', profileData.username)
-      )
-      const usernameSnapshot = await getDocs(usernameQuery)
+      await firebaseAdminReady
+      const usernameSnapshot = await admin
+        .firestore()
+        .collection('profiles')
+        .where('username', '==', profileData.username)
+        .get()
 
       if (!usernameSnapshot.empty) {
         const existingProfile = usernameSnapshot.docs[0].data()

@@ -562,6 +562,8 @@ paths:
   /ml/audio:
     post:
       summary: Upload Audio for Prediction
+      deprecated: true
+      description: Legacy server-side audio inference endpoint. Mentalys Android should run voice inference on-device and persist only result metadata with POST /ml/history.
       tags:
         - Machine Learning
       security:
@@ -591,6 +593,8 @@ paths:
   /ml/quiz:
     post:
       summary: Submit Quiz Data for Analysis
+      deprecated: true
+      description: Legacy server-side quiz inference endpoint. Mentalys Android should score PHQ-9/on-device screening locally and persist only result metadata with POST /ml/history.
       tags:
         - Machine Learning
       security:
@@ -616,6 +620,8 @@ paths:
   /ml/handwriting:
     post:
       summary: Upload Handwriting for Prediction
+      deprecated: true
+      description: Legacy handwriting endpoint. User-facing handwriting analysis has been replaced by local face analysis and metadata storage through POST /ml/history.
       tags:
         - Machine Learning
       security:
@@ -659,8 +665,9 @@ paths:
             type: string
             enum:
               - quiz_requests
-              - handwriting_requests
               - audio_requests
+              - face_requests
+              - multimodal_requests
           description: Type of machine learning request to retrieve history for.
         - in: query
           name: page
@@ -800,6 +807,77 @@ paths:
                   message:
                     type: string
                     example: 'Unauthorized - No token provided'
+
+    post:
+      summary: Store Local Screening Result Metadata
+      description: >
+        Stores privacy-preserving screening result metadata from Android on-device inference. Do not send raw face images, raw voice recordings, or PHQ-9 item-level logs through this endpoint.
+      tags:
+        - Machine Learning History
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - type
+                - prediction
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - quiz_requests
+                    - audio_requests
+                    - face_requests
+                    - multimodal_requests
+                  example: multimodal_requests
+                prediction:
+                  type: string
+                  example: Moderate
+                confidence:
+                  type: number
+                  format: float
+                  minimum: 0
+                  maximum: 1
+                  example: 0.62
+                riskScore:
+                  type: number
+                  format: float
+                  minimum: 0
+                  maximum: 1
+                  example: 0.41
+                riskCategory:
+                  type: string
+                  example: Moderate
+                modalitiesUsed:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - quiz
+                    - audio
+                additionalPrompt:
+                  type: object
+                  additionalProperties: true
+                  example:
+                    phqScore: 8
+                    audioScore: 0.51
+                    faceScore: null
+                    finalScore: 0.43
+                timestamp:
+                  type: string
+                  format: date-time
+                  example: '2026-04-25T10:30:00Z'
+      responses:
+        '201':
+          description: Screening metadata stored successfully.
+        '400':
+          description: Validation Error
+        '401':
+          description: Unauthorized (Invalid or missing token).
 
   /ml/all-history:
     get:

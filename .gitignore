@@ -1,0 +1,12 @@
+# Secrets: never commit
+.env
+*.env.local
+*firebase-adminsdk*.json
+serviceAccountKey.json
+google-services.json
+*-api-key.txt
+*-server-key.txt
+
+node_modules/
+dist/
+*.logcat

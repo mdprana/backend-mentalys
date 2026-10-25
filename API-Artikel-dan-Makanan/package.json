@@ -12,6 +12,7 @@
     "build": "tsc",
     "dev": "npx nodemon",
     "start": "node ./dist/index.js",
+    "seed:content": "ts-node -r tsconfig-paths/register src/scripts/seedFirestore.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

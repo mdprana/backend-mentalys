@@ -1,6 +1,8 @@
 import { getFirestoreInstance } from '../config/firebase'
 import { Article, GetArticle, GetArticlesResponse, MentalState } from '../types/articleTypes'
 
+const toAndroidFriendlyIso = (date: Date): string => date.toISOString().replace(/\.\d{3}Z$/, 'Z')
+
 // Simpan artikel ke Firestore
 export const saveArticle = async (article: Article): Promise<string> => {
   const db = await getFirestoreInstance() // Pastikan mendapatkan instance Firestore
@@ -10,9 +12,9 @@ export const saveArticle = async (article: Article): Promise<string> => {
   }
 
   if (!article.metadata.publish_date) {
-    article.metadata.publish_date = new Date().toISOString()
+    article.metadata.publish_date = toAndroidFriendlyIso(new Date())
   }
-  article.metadata.last_updated = new Date().toISOString()
+  article.metadata.last_updated = toAndroidFriendlyIso(new Date())
   article.metadata.views = article.metadata.views || 0
   article.metadata.likes = article.metadata.likes || 0
 
@@ -31,6 +33,7 @@ export const getArticles = async (): Promise<GetArticlesResponse> => {
     articles.push({
       id: data.id,
       title: data.title,
+      author: data.author,
       metadata: data.metadata
     })
   })
@@ -71,6 +74,7 @@ export const getArticlesByMentalState = async (
     articles.push({
       id: data.id,
       title: data.title,
+      author: data.author,
       metadata: data.metadata
     })
   })

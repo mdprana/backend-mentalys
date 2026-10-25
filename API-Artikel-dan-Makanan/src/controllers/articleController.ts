@@ -9,7 +9,8 @@ import {
 import {
   validateContent,
   validateImageLink,
-  validateMentalState
+  validateMentalState,
+  normalizeMentalState
 } from '../validations/articleValidation'
 import { Article, MentalState } from '../types/articleTypes'
 import { handleFirestoreError } from '../utils/errorHandler'
@@ -34,6 +35,7 @@ export const createArticle = async (req: Request, res: Response, next: NextFunct
     if (mentalStateError) {
       return res.status(400).json({ error: mentalStateError })
     }
+    article.metadata.mental_state = normalizeMentalState(mentalState)
 
     for (const content of article.content) {
       const validationError = validateContent(content)
@@ -98,7 +100,7 @@ export const getArticlesByMentalStateController = async (
   next: NextFunction
 ) => {
   try {
-    const mentalState = req.params.mental_state as MentalState // Ambil mental state dari parameter URL
+    const mentalState = normalizeMentalState(req.params.mental_state) as MentalState
     const articles = await getArticlesByMentalState(mentalState)
     res.status(200).json({
       message: 'Articles retrieved successfully',

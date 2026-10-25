@@ -13,7 +13,7 @@ export class PlacesController {
 
   async searchNearby(req: Request, res: Response, next: NextFunction) {
     try {
-      const { lat, lng, radius, openNow } = req.query
+      const { lat, lng, radius, openNow, language } = req.query
 
       if (!lat || !lng) {
         return next(AppError('Location coordinates are required', 400))
@@ -25,7 +25,8 @@ export class PlacesController {
           lng: parseFloat(lng as string)
         },
         radius: parseInt(radius as string) || config.defaultRadius,
-        openNow: openNow === 'true'
+        openNow: openNow === 'true',
+        language: this.normalizeLanguage(language)
       }
 
       const places = await this.googleMapsService.searchNearbyPlaces(searchParams)
@@ -43,7 +44,10 @@ export class PlacesController {
   async getDetails(req: Request, res: Response, next: NextFunction) {
     try {
       const { placeId } = req.params
-      const details = await this.googleMapsService.getPlaceDetails(placeId)
+      const details = await this.googleMapsService.getPlaceDetails(
+        placeId,
+        this.normalizeLanguage(req.query.language)
+      )
       res.json({
         status: 'success',
         data: details
@@ -51,5 +55,9 @@ export class PlacesController {
     } catch (error) {
       next(error)
     }
+  }
+
+  private normalizeLanguage(language: unknown): 'id' | 'en' {
+    return language === 'en' ? 'en' : 'id'
   }
 }

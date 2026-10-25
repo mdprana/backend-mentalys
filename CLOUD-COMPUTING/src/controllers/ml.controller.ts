@@ -3,12 +3,13 @@ import {
   quizInputSchema,
   audioInputSchema,
   handwritingInputSchema,
+  historyMetadataSchema,
   isValidISODate
 } from '../validations/ml.validation'
 import { mlService } from '../services/ml.service'
 import { formatJoiError } from '../utils/joiValidation'
 import { AuthenticatedRequest } from '../types/AuthenticatedRequest.type'
-import { MLHistoryQuery, MLRequestType } from '../types/ml.type'
+import { MLHistoryMetadataInput, MLHistoryQuery, MLRequestType } from '../types/ml.type'
 
 export const handleQuizPrediction = async (
   req: AuthenticatedRequest,
@@ -24,8 +25,12 @@ export const handleQuizPrediction = async (
     const inputData = req.body
     const uid = req.user.uid
     const prediction = await mlService.sendQuizPrediction(uid, inputData)
+    res.setHeader('Deprecation', 'true')
+    res.setHeader('Link', '</api/ml/history>; rel="successor-version"')
     return res.status(200).json({
       status: 'success',
+      message:
+        'Legacy server-side quiz prediction endpoint. Mentalys Android should run screening locally and store metadata with /ml/history.',
       prediction
     })
   } catch (error) {
@@ -59,8 +64,12 @@ export const handleAudioPrediction = async (
     }
     const uid = req.user.uid
     const prediction = await mlService.sendAudioPrediction(uid, audioFile)
+    res.setHeader('Deprecation', 'true')
+    res.setHeader('Link', '</api/ml/history>; rel="successor-version"')
     return res.status(200).json({
       status: 'success',
+      message:
+        'Legacy server-side audio prediction endpoint. Mentalys Android should run voice inference locally and store metadata with /ml/history.',
       prediction
     })
   } catch (error) {
@@ -94,9 +103,36 @@ export const handleHandwritingPrediction = async (
     }
     const uid = req.user.uid
     const prediction = await mlService.sendHandwritingPrediction(uid, imageFile)
+    res.setHeader('Deprecation', 'true')
+    res.setHeader('Link', '</api/ml/history>; rel="successor-version"')
     return res.status(200).json({
       status: 'success',
+      message:
+        'Legacy handwriting endpoint. User-facing handwriting analysis has been replaced by local face analysis and /ml/history metadata storage.',
       prediction
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const saveMLRequestHistory = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { error } = historyMetadataSchema.validate(req.body)
+    if (error) {
+      const validationError = formatJoiError(error)
+      return res.status(400).json(validationError)
+    }
+
+    const uid = req.user.uid
+    const history = await mlService.saveHistoryMetadata(uid, req.body as MLHistoryMetadataInput)
+    return res.status(201).json({
+      status: 'success',
+      data: history
     })
   } catch (error) {
     next(error)
@@ -112,7 +148,11 @@ export const getMLRequestHistory = async (
     const uid = req.user.uid
     const { type, page, limit, startDate, endDate, sortBy, sortOrder } = req.query
 
-    if (!Object.values(MLRequestType).includes(type as MLRequestType)) {
+    const supportedHistoryTypes: MLRequestType[] = Object.values(MLRequestType).filter(
+      (requestType) => requestType !== MLRequestType.HANDWRITING
+    )
+
+    if (!supportedHistoryTypes.includes(type as MLRequestType)) {
       return res.status(400).json({
         status: 'fail',
         message: 'Invalid ML request type'
@@ -187,6 +227,24 @@ export const getAllMLRequestHistory = async (
     return res.status(200).json({
       status: 'success',
       ...history
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const deleteAllMLRequestHistory = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const uid = req.user.uid
+    const result = await mlService.deleteAllMLRequestHistory(uid)
+    return res.status(200).json({
+      status: 'success',
+      message: 'ML request history deleted successfully',
+      ...result
     })
   } catch (error) {
     next(error)

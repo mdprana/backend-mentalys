@@ -4,14 +4,20 @@
     "fullName": "Dr. Tifa Lockhart",
     "title": "MD, Psychiatry",
     "mainRole": "Psychiatric Consultant",
-    "specializations": ["Child Psychiatry", "Addiction Therapy"],
+    "specializations": [
+      "Child Psychiatry",
+      "Addiction Therapy"
+    ],
     "ratings": 4.8,
     "reviewCount": 120,
     "patientsCount": 200,
     "experienceYears": 10,
-    "aboutMe": "Dr. Tifa is a compassionate psychiatrist with over a decade of experience in mental health care.",
-    "languages": ["English", "Bahasa Indonesia"],
-    "photoUrl": "https://example.com/photo1.jpg",
+    "aboutMe": "Dr. Tifa is a compassionate psychiatrist with over a decade of experience supporting children, adolescents, and families through emotional, behavioral, and addiction-related concerns. Her approach combines careful psychiatric assessment, psychoeducation, collaborative treatment planning, and practical coping strategies so patients and caregivers can understand symptoms clearly and take realistic next steps. She focuses on building trust, reducing stigma, and helping each patient feel safe, heard, and actively involved in their care.",
+    "languages": [
+      "English",
+      "Bahasa Indonesia"
+    ],
+    "photoUrl": "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg",
     "education": [
       {
         "degree": "MD in Psychiatry",
@@ -49,11 +55,17 @@
     "availability": [
       {
         "date": "2024-12-10",
-        "timeSlots": ["10:00 AM - 11:00 AM", "2:00 PM - 3:00 PM"]
+        "timeSlots": [
+          "10:00 AM - 11:00 AM",
+          "2:00 PM - 3:00 PM"
+        ]
       },
       {
         "date": "2024-12-11",
-        "timeSlots": ["09:00 AM - 10:00 AM", "3:00 PM - 4:00 PM"]
+        "timeSlots": [
+          "09:00 AM - 10:00 AM",
+          "3:00 PM - 4:00 PM"
+        ]
       }
     ],
     "contact": {
@@ -66,14 +78,20 @@
     "fullName": "Dr. Cloud Strife",
     "title": "MD, Psychiatry",
     "mainRole": "Mental Health Specialist",
-    "specializations": ["Trauma Therapy", "PTSD Treatment"],
+    "specializations": [
+      "Trauma Therapy",
+      "PTSD Treatment"
+    ],
     "ratings": 4.7,
     "reviewCount": 95,
     "patientsCount": 180,
     "experienceYears": 8,
-    "aboutMe": "Dr. Cloud specializes in helping patients overcome traumatic experiences with compassionate care.",
-    "languages": ["English", "Japanese"],
-    "photoUrl": "https://example.com/photo2.jpg",
+    "aboutMe": "Dr. Cloud specializes in trauma-informed psychiatric care for people living with PTSD symptoms, chronic stress, emotional numbness, and anxiety after difficult life events. He emphasizes safety, stabilization, and gradual recovery, using structured assessment and evidence-informed treatment planning to help patients understand how trauma can affect mood, sleep, concentration, and relationships. His consultations are calm, practical, and focused on restoring daily function while respecting each patient's pace.",
+    "languages": [
+      "English",
+      "Japanese"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80",
     "education": [
       {
         "degree": "MD in Psychiatry",
@@ -93,7 +111,10 @@
         "endTime": "07:00 PM"
       }
     ],
-    "certifications": ["Certified EMDR Therapist", "Member of Japanese Psychiatric Association"],
+    "certifications": [
+      "Certified EMDR Therapist",
+      "Member of Japanese Psychiatric Association"
+    ],
     "location": {
       "address": "Shibuya 2-Chome, Tokyo",
       "latitude": "35.658034",
@@ -108,11 +129,17 @@
     "availability": [
       {
         "date": "2024-12-12",
-        "timeSlots": ["09:00 AM - 10:30 AM", "3:00 PM - 4:30 PM"]
+        "timeSlots": [
+          "09:00 AM - 10:30 AM",
+          "3:00 PM - 4:30 PM"
+        ]
       },
       {
         "date": "2024-12-13",
-        "timeSlots": ["10:00 AM - 11:30 AM", "4:00 PM - 5:30 PM"]
+        "timeSlots": [
+          "10:00 AM - 11:30 AM",
+          "4:00 PM - 5:30 PM"
+        ]
       }
     ],
     "contact": {
@@ -125,14 +152,20 @@
     "fullName": "Dr. Aerith Gainsborough",
     "title": "PhD, Clinical Psychology",
     "mainRole": "Psychological Counselor",
-    "specializations": ["Relationship Counseling", "Anxiety Management"],
+    "specializations": [
+      "Relationship Counseling",
+      "Anxiety Management"
+    ],
     "ratings": 4.9,
     "reviewCount": 150,
     "patientsCount": 250,
     "experienceYears": 12,
-    "aboutMe": "Dr. Aerith is dedicated to helping individuals navigate complex emotional landscapes with empathy and expertise.",
-    "languages": ["English", "Spanish"],
-    "photoUrl": "https://example.com/photo3.jpg",
+    "aboutMe": "Dr. Aerith is dedicated to helping individuals navigate anxiety, relationship stress, emotional overwhelm, and major life transitions with empathy and clinical structure. Her counseling style blends psychological assessment, supportive listening, and practical skill-building so clients can better understand patterns in their thoughts, emotions, and behavior. She aims to create a warm therapeutic space where people can reflect honestly, strengthen coping skills, and build healthier communication and self-care routines.",
+    "languages": [
+      "English",
+      "Spanish"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80",
     "education": [
       {
         "degree": "PhD in Clinical Psychology",
@@ -170,11 +203,17 @@
     "availability": [
       {
         "date": "2024-12-14",
-        "timeSlots": ["11:00 AM - 12:30 PM", "2:00 PM - 3:30 PM"]
+        "timeSlots": [
+          "11:00 AM - 12:30 PM",
+          "2:00 PM - 3:30 PM"
+        ]
       },
       {
         "date": "2024-12-15",
-        "timeSlots": ["09:00 AM - 10:30 AM", "4:00 PM - 5:30 PM"]
+        "timeSlots": [
+          "09:00 AM - 10:30 AM",
+          "4:00 PM - 5:30 PM"
+        ]
       }
     ],
     "contact": {
@@ -187,14 +226,20 @@
     "fullName": "Dr. Barrett Wallace",
     "title": "MD, Psychiatry",
     "mainRole": "Addiction Specialist",
-    "specializations": ["Substance Abuse", "Group Therapy"],
+    "specializations": [
+      "Substance Abuse",
+      "Group Therapy"
+    ],
     "ratings": 4.6,
     "reviewCount": 80,
     "patientsCount": 150,
     "experienceYears": 15,
-    "aboutMe": "Dr. Barrett provides comprehensive care for individuals struggling with addiction, focusing on holistic recovery.",
-    "languages": ["English", "Portuguese"],
-    "photoUrl": "https://example.com/photo4.jpg",
+    "aboutMe": "Dr. Barrett provides comprehensive addiction and recovery-focused mental health care for people facing substance use, relapse risk, emotional distress, and family or social pressure. His approach highlights holistic recovery, including motivation, coping skills, support systems, sleep, stress management, and long-term relapse prevention. He works collaboratively with patients to identify triggers, rebuild daily routines, and connect treatment goals with practical steps that support safer, more stable living.",
+    "languages": [
+      "English",
+      "Portuguese"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80",
     "education": [
       {
         "degree": "MD in Psychiatry",
@@ -232,11 +277,17 @@
     "availability": [
       {
         "date": "2024-12-16",
-        "timeSlots": ["10:00 AM - 11:30 AM", "3:00 PM - 4:30 PM"]
+        "timeSlots": [
+          "10:00 AM - 11:30 AM",
+          "3:00 PM - 4:30 PM"
+        ]
       },
       {
         "date": "2024-12-17",
-        "timeSlots": ["09:00 AM - 10:30 AM", "4:00 PM - 5:30 PM"]
+        "timeSlots": [
+          "09:00 AM - 10:30 AM",
+          "4:00 PM - 5:30 PM"
+        ]
       }
     ],
     "contact": {
@@ -249,14 +300,20 @@
     "fullName": "Dr. Red XIII",
     "title": "PhD, Neuropsychology",
     "mainRole": "Cognitive Disorders Specialist",
-    "specializations": ["Neurodegenerative Diseases", "Cognitive Rehabilitation"],
+    "specializations": [
+      "Neurodegenerative Diseases",
+      "Cognitive Rehabilitation"
+    ],
     "ratings": 4.7,
     "reviewCount": 110,
     "patientsCount": 175,
     "experienceYears": 9,
-    "aboutMe": "Dr. Red XIII is passionate about understanding and treating complex neurological conditions with cutting-edge research.",
-    "languages": ["English", "German"],
-    "photoUrl": "https://example.com/photo5.jpg",
+    "aboutMe": "Dr. Red XIII focuses on cognitive and neuropsychological concerns, including memory changes, attention difficulties, cognitive rehabilitation needs, and emotional adjustment related to neurological conditions. He combines careful evaluation with practical recommendations that help patients and families understand cognitive strengths, limitations, and daily support strategies. His work emphasizes patient dignity, clear communication, and evidence-informed planning for better functioning at home, school, work, or caregiving environments.",
+    "languages": [
+      "English",
+      "German"
+    ],
+    "photoUrl": "https://images.pexels.com/photos/8460157/pexels-photo-8460157.jpeg",
     "education": [
       {
         "degree": "PhD in Neuropsychology",
@@ -294,16 +351,397 @@
     "availability": [
       {
         "date": "2024-12-18",
-        "timeSlots": ["11:00 AM - 12:30 PM", "2:00 PM - 3:30 PM"]
+        "timeSlots": [
+          "11:00 AM - 12:30 PM",
+          "2:00 PM - 3:30 PM"
+        ]
       },
       {
         "date": "2024-12-19",
-        "timeSlots": ["09:00 AM - 10:30 AM", "4:00 PM - 5:30 PM"]
+        "timeSlots": [
+          "09:00 AM - 10:30 AM",
+          "4:00 PM - 5:30 PM"
+        ]
       }
     ],
     "contact": {
       "phoneNumber": "0806789012",
       "email": "dr.red.xiii@example.com"
+    }
+  },
+  {
+    "id": "mentalys-psy-006",
+    "fullName": "Dr. Aditya Pratama",
+    "title": "Sp.KJ, Psychiatrist",
+    "mainRole": "Adult Psychiatry Consultant",
+    "specializations": [
+      "Depression",
+      "Anxiety Disorders",
+      "Stress Management"
+    ],
+    "ratings": 4.9,
+    "reviewCount": 132,
+    "patientsCount": 310,
+    "experienceYears": 11,
+    "aboutMe": "Dr. Aditya focuses on evidence-informed psychiatric care for adults experiencing mood changes, anxiety symptoms, work-related stress, and difficulties maintaining daily routines. He provides structured psychiatric assessment, explains possible contributing factors in clear language, and helps patients build a practical care plan that may include therapy referral, lifestyle adjustments, monitoring, and medication discussion when appropriate. His style is calm, collaborative, and centered on helping patients regain stability and confidence step by step.",
+    "languages": [
+      "Bahasa Indonesia",
+      "English"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1700041785712-649e859d9909?w=400&q=80",
+    "education": [
+      {
+        "degree": "Specialist in Psychiatry",
+        "institution": "Universitas Gadjah Mada",
+        "yearOfGraduation": 2013
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Monday",
+        "startTime": "09:00 AM",
+        "endTime": "04:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "startTime": "01:00 PM",
+        "endTime": "06:00 PM"
+      }
+    ],
+    "certifications": [
+      "Member of Indonesian Psychiatric Association",
+      "CBT Training for Mood Disorders"
+    ],
+    "location": {
+      "address": "Jl. Kaliurang Km 5, Sleman, Yogyakarta",
+      "latitude": "-7.749590",
+      "longitude": "110.376862"
+    },
+    "consultationFee": 225000,
+    "features": {
+      "bookAppointment": true,
+      "chat": true,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2026-05-06",
+        "timeSlots": [
+          "09:00 AM - 10:00 AM",
+          "2:00 PM - 3:00 PM"
+        ]
+      },
+      {
+        "date": "2026-05-07",
+        "timeSlots": [
+          "10:00 AM - 11:00 AM",
+          "4:00 PM - 5:00 PM"
+        ]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "087816003229",
+      "email": "aditya.pratama@mentalys.app"
+    }
+  },
+  {
+    "id": "mentalys-psy-007",
+    "fullName": "Dr. Nabila Maharani",
+    "title": "Sp.KJ, Psychiatrist",
+    "mainRole": "Youth Mental Health Specialist",
+    "specializations": [
+      "Adolescent Psychiatry",
+      "Self-Esteem Issues",
+      "School Stress"
+    ],
+    "ratings": 4.8,
+    "reviewCount": 98,
+    "patientsCount": 240,
+    "experienceYears": 9,
+    "aboutMe": "Dr. Nabila supports adolescents and young adults who struggle with emotional pressure, self-esteem issues, school or university stress, family conflict, and early signs of mood or anxiety problems. She uses a family-aware and developmentally sensitive approach, helping young patients express what they feel while guiding caregivers to respond with more understanding. Her consultations focus on safety, emotional regulation, communication, and building realistic routines that support healthier growth and resilience.",
+    "languages": [
+      "Bahasa Indonesia",
+      "English"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80",
+    "education": [
+      {
+        "degree": "Specialist in Psychiatry",
+        "institution": "Universitas Indonesia",
+        "yearOfGraduation": 2015
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Tuesday",
+        "startTime": "10:00 AM",
+        "endTime": "05:00 PM"
+      },
+      {
+        "day": "Friday",
+        "startTime": "09:00 AM",
+        "endTime": "03:00 PM"
+      }
+    ],
+    "certifications": [
+      "Child and Adolescent Psychiatry Training",
+      "Member of Indonesian Psychiatric Association"
+    ],
+    "location": {
+      "address": "Jl. Diponegoro No. 71, Menteng, Jakarta",
+      "latitude": "-6.200373",
+      "longitude": "106.832199"
+    },
+    "consultationFee": 275000,
+    "features": {
+      "bookAppointment": true,
+      "chat": true,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2026-05-08",
+        "timeSlots": [
+          "10:00 AM - 11:00 AM",
+          "1:00 PM - 2:00 PM"
+        ]
+      },
+      {
+        "date": "2026-05-09",
+        "timeSlots": [
+          "09:00 AM - 10:00 AM",
+          "2:00 PM - 3:00 PM"
+        ]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "087816003229",
+      "email": "nabila.maharani@mentalys.app"
+    }
+  },
+  {
+    "id": "mentalys-psy-008",
+    "fullName": "Dr. Bima Santoso",
+    "title": "Sp.KJ, Psychiatrist",
+    "mainRole": "Trauma and Mood Disorder Specialist",
+    "specializations": [
+      "Trauma Therapy",
+      "Mood Disorders",
+      "PTSD"
+    ],
+    "ratings": 4.7,
+    "reviewCount": 88,
+    "patientsCount": 205,
+    "experienceYears": 10,
+    "aboutMe": "Dr. Bima works with patients experiencing trauma-related symptoms, mood instability, panic, irritability, and prolonged stress responses that interfere with daily life. His approach begins with careful listening and symptom mapping, then moves toward practical stabilization strategies, treatment planning, and professional support options suited to the patient's needs. He pays close attention to sleep, triggers, avoidance patterns, emotional regulation, and the patient's sense of safety throughout the recovery process.",
+    "languages": [
+      "Bahasa Indonesia",
+      "English"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1758691463582-11aea602cd4a?w=400&q=80",
+    "education": [
+      {
+        "degree": "Specialist in Psychiatry",
+        "institution": "Universitas Airlangga",
+        "yearOfGraduation": 2014
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Wednesday",
+        "startTime": "08:30 AM",
+        "endTime": "03:30 PM"
+      },
+      {
+        "day": "Saturday",
+        "startTime": "09:00 AM",
+        "endTime": "01:00 PM"
+      }
+    ],
+    "certifications": [
+      "Trauma-Focused Therapy Training",
+      "Member of Indonesian Psychiatric Association"
+    ],
+    "location": {
+      "address": "Jl. Raya Darmo No. 90, Surabaya",
+      "latitude": "-7.292407",
+      "longitude": "112.739425"
+    },
+    "consultationFee": 250000,
+    "features": {
+      "bookAppointment": true,
+      "chat": false,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2026-05-10",
+        "timeSlots": [
+          "08:30 AM - 09:30 AM",
+          "11:00 AM - 12:00 PM"
+        ]
+      },
+      {
+        "date": "2026-05-11",
+        "timeSlots": [
+          "09:00 AM - 10:00 AM",
+          "12:00 PM - 1:00 PM"
+        ]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "087816003229",
+      "email": "bima.santoso@mentalys.app"
+    }
+  },
+  {
+    "id": "mentalys-psy-009",
+    "fullName": "Dr. Laras Ayuningtyas",
+    "title": "Clinical Psychologist",
+    "mainRole": "Cognitive Behavioral Therapy Counselor",
+    "specializations": [
+      "CBT",
+      "Depression Counseling",
+      "Emotion Regulation"
+    ],
+    "ratings": 4.8,
+    "reviewCount": 116,
+    "patientsCount": 265,
+    "experienceYears": 8,
+    "aboutMe": "Dr. Laras provides structured counseling for depressive symptoms, anxiety, emotion regulation, low motivation, and daily coping difficulties. Her practice emphasizes cognitive behavioral strategies, identifying unhelpful thought patterns, improving routines, and strengthening problem-solving skills in a realistic and supportive way. She helps clients translate insight into small daily actions, while encouraging professional follow-up when symptoms become persistent, intense, or disruptive.",
+    "languages": [
+      "Bahasa Indonesia",
+      "English"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80",
+    "education": [
+      {
+        "degree": "Master of Clinical Psychology",
+        "institution": "Universitas Padjadjaran",
+        "yearOfGraduation": 2016
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Monday",
+        "startTime": "11:00 AM",
+        "endTime": "06:00 PM"
+      },
+      {
+        "day": "Wednesday",
+        "startTime": "10:00 AM",
+        "endTime": "05:00 PM"
+      }
+    ],
+    "certifications": [
+      "Certified CBT Practitioner",
+      "Indonesian Clinical Psychology Association Member"
+    ],
+    "location": {
+      "address": "Jl. Ir. H. Juanda No. 100, Bandung",
+      "latitude": "-6.892482",
+      "longitude": "107.610659"
+    },
+    "consultationFee": 200000,
+    "features": {
+      "bookAppointment": true,
+      "chat": true,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2026-05-12",
+        "timeSlots": [
+          "11:00 AM - 12:00 PM",
+          "3:00 PM - 4:00 PM"
+        ]
+      },
+      {
+        "date": "2026-05-13",
+        "timeSlots": [
+          "10:00 AM - 11:00 AM",
+          "2:00 PM - 3:00 PM"
+        ]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "087816003229",
+      "email": "laras.ayuningtyas@mentalys.app"
+    }
+  },
+  {
+    "id": "mentalys-psy-010",
+    "fullName": "Dr. Kevin Wijaya",
+    "title": "Sp.KJ, Psychiatrist",
+    "mainRole": "Sleep and Anxiety Consultant",
+    "specializations": [
+      "Sleep Problems",
+      "Generalized Anxiety",
+      "Panic Symptoms"
+    ],
+    "ratings": 4.6,
+    "reviewCount": 74,
+    "patientsCount": 190,
+    "experienceYears": 7,
+    "aboutMe": "Dr. Kevin helps patients understand the connection between sleep, anxiety, panic symptoms, and mood changes through practical psychiatric assessment and treatment planning. He explores sleep habits, stress patterns, physical symptoms, thought cycles, and lifestyle factors that may maintain distress, then guides patients toward realistic strategies for better rest and emotional regulation. His consultations are designed to be clear, supportive, and action-oriented while still respecting the complexity of each person's condition.",
+    "languages": [
+      "Bahasa Indonesia",
+      "English"
+    ],
+    "photoUrl": "https://images.unsplash.com/photo-1666887360742-974c8fce8e6b?w=400&q=80",
+    "education": [
+      {
+        "degree": "Specialist in Psychiatry",
+        "institution": "Universitas Udayana",
+        "yearOfGraduation": 2017
+      }
+    ],
+    "workingHours": [
+      {
+        "day": "Tuesday",
+        "startTime": "09:00 AM",
+        "endTime": "04:00 PM"
+      },
+      {
+        "day": "Thursday",
+        "startTime": "10:00 AM",
+        "endTime": "05:00 PM"
+      }
+    ],
+    "certifications": [
+      "Sleep Medicine Workshop",
+      "Member of Indonesian Psychiatric Association"
+    ],
+    "location": {
+      "address": "Jl. Teuku Umar No. 50, Denpasar, Bali",
+      "latitude": "-8.682204",
+      "longitude": "115.212070"
+    },
+    "consultationFee": 230000,
+    "features": {
+      "bookAppointment": true,
+      "chat": true,
+      "videoConsultation": true
+    },
+    "availability": [
+      {
+        "date": "2026-05-14",
+        "timeSlots": [
+          "09:00 AM - 10:00 AM",
+          "1:00 PM - 2:00 PM"
+        ]
+      },
+      {
+        "date": "2026-05-15",
+        "timeSlots": [
+          "10:00 AM - 11:00 AM",
+          "3:00 PM - 4:00 PM"
+        ]
+      }
+    ],
+    "contact": {
+      "phoneNumber": "087816003229",
+      "email": "kevin.wijaya@mentalys.app"
     }
   }
 ]

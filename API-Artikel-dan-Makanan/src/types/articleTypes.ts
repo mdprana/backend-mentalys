@@ -15,6 +15,25 @@ export interface Metadata {
   views: number
   mental_state?: MentalState
   image_link: string
+  short_description?: string
+  references?: Reference[]
+  reviewed_by?: Reviewer
+  medical_disclaimer?: string
+}
+
+export interface Reference {
+  title: string
+  source: string
+  url: string
+  year?: number
+  doi?: string
+}
+
+export interface Reviewer {
+  name: string
+  role: string
+  organization?: string
+  reviewed_at: string
 }
 
 export enum ContentType {
@@ -30,18 +49,13 @@ export enum ContentType {
 }
 
 export enum MentalState {
-  MDD = 'MDD',
-  ASD = 'ASD',
-  LONELINESS = 'Loneliness',
-  BIPOLAR = 'bipolar',
-  ANXIETY = 'anxiety',
-  PTSD = 'PTSD',
-  SLEEP_DISORDER = 'sleep disord',
-  PSYCHOTIC_DEPRESSION = 'psychot depresn',
-  ED = 'ED',
-  ADHD = 'ADHD',
-  PDD = 'PDD',
-  OCD = 'OCD'
+  DEPRESSION = 'depression',
+  MINIMAL = 'minimal',
+  MILD = 'mild',
+  MODERATE = 'moderate',
+  MODERATELY_SEVERE = 'moderately_severe',
+  SEVERE = 'severe',
+  HIGH_RISK = 'high_risk'
 }
 
 export interface Content {

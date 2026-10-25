@@ -17,6 +17,13 @@ articleRoute.get('/article', (req: Request, res: Response, next: NextFunction) =
   getArticlesController(req, res, next)
 })
 
+articleRoute.get(
+  '/article/mental_state/:mental_state',
+  (req: Request, res: Response, next: NextFunction) => {
+    getArticlesByMentalStateController(req, res, next)
+  }
+)
+
 articleRoute.get('/article/:id', (req: Request, res: Response, next: NextFunction) => {
   // Get article by id
   getArticleByIdController(req, res, next)
@@ -26,12 +33,5 @@ articleRoute.delete('/article/:id', (req: Request, res: Response, next: NextFunc
   // Delete article by id
   deleteArticleController(req, res, next)
 })
-
-articleRoute.get(
-  '/article/mental_state/:mental_state',
-  (req: Request, res: Response, next: NextFunction) => {
-    getArticlesByMentalStateController(req, res, next)
-  }
-)
 
 export default articleRoute

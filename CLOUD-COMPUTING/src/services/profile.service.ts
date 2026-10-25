@@ -1,12 +1,11 @@
-import { db } from '../config/firebase.config'
+import { admin, firebaseAdminReady } from '../config/firebase.config'
 import { storage } from '../config/firebase.config'
-import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { ProfileRequestBody, ProfileRequestRegisterBody } from '../types/profile.type'
 
 export const profileService = {
   async createProfile(uid: string, profileData: ProfileRequestRegisterBody) {
-    const profileRef = doc(db, 'profiles', uid)
+    await firebaseAdminReady
     const timestamp = new Date().toISOString()
     const data = {
       ...profileData,
@@ -14,7 +13,7 @@ export const profileService = {
       created_at: timestamp
     }
 
-    await setDoc(profileRef, data)
+    await admin.firestore().collection('profiles').doc(uid).set(data)
     return data
   },
 
@@ -23,12 +22,10 @@ export const profileService = {
     profileData: Partial<ProfileRequestBody>,
     imageFile?: Express.Multer.File
   ) {
-    const profileRef = doc(db, 'profiles', uid)
-    const profileSnap = await getDoc(profileRef)
-
-    if (!profileSnap.exists()) {
-      throw new Error('Profile not found')
-    }
+    await firebaseAdminReady
+    const profileRef = admin.firestore().collection('profiles').doc(uid)
+    const profileSnap = await profileRef.get()
+    const existingData = profileSnap.exists ? profileSnap.data() || {} : {}
 
     let profile_pic = profileData.profile_pic
 
@@ -42,25 +39,30 @@ export const profileService = {
     }
 
     const timestamp = new Date().toISOString()
-    const firstName = profileData.firstName || profileSnap.data().firstName
-    const lastName = profileData.lastName || profileSnap.data().lastName
-    const full_name = `${firstName} ${lastName}`
+    const nameParts = profileData.full_name?.trim().split(/\s+/) || []
+    const firstName = profileData.firstName || existingData.firstName || nameParts[0] || 'Mentalys'
+    const lastName = profileData.lastName || existingData.lastName || nameParts.slice(1).join(' ') || 'User'
+    const full_name = profileData.full_name || `${firstName} ${lastName}`
     const data = {
-      ...profileSnap.data(),
+      ...existingData,
       ...profileData,
       ...(profile_pic && { profile_pic }),
+      uid,
+      firstName,
+      lastName,
       full_name,
+      created_at: existingData.created_at || timestamp,
       updated_at: timestamp
     }
 
-    await setDoc(profileRef, data)
+    await profileRef.set(data)
     return data
   },
   async getProfile(uid: string) {
-    const profileRef = doc(db, 'profiles', uid)
-    const profileSnap = await getDoc(profileRef)
+    await firebaseAdminReady
+    const profileSnap = await admin.firestore().collection('profiles').doc(uid).get()
 
-    if (!profileSnap.exists()) {
+    if (!profileSnap.exists) {
       return null
     }
 

@@ -5,7 +5,9 @@ import {
   getMLRequestHistory,
   handleAudioPrediction,
   handleHandwritingPrediction,
-  handleQuizPrediction
+  handleQuizPrediction,
+  deleteAllMLRequestHistory,
+  saveMLRequestHistory
 } from '../controllers/ml.controller'
 import { uploadAudio, uploadImage } from '../utils/uploadML'
 import handleAxiosError from '../middleware/axiosErrorHandler'
@@ -52,6 +54,26 @@ mlRouter.get(
   },
   async (req: Request, res: Response, next: NextFunction) => {
     getMLRequestHistory(req as AuthenticatedRequest, res, next)
+  }
+)
+
+mlRouter.post(
+  '/history',
+  (req: Request, res: Response, next: NextFunction) => {
+    authenticateUser(req, res, next)
+  },
+  async (req: Request, res: Response, next: NextFunction) => {
+    saveMLRequestHistory(req as AuthenticatedRequest, res, next)
+  }
+)
+
+mlRouter.delete(
+  '/history',
+  (req: Request, res: Response, next: NextFunction) => {
+    authenticateUser(req, res, next)
+  },
+  async (req: Request, res: Response, next: NextFunction) => {
+    deleteAllMLRequestHistory(req as AuthenticatedRequest, res, next)
   }
 )
 

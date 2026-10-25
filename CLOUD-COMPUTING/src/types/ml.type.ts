@@ -48,7 +48,20 @@ export interface HandwritingInputData {
 export enum MLRequestType {
   QUIZ = 'quiz_requests',
   HANDWRITING = 'handwriting_requests',
-  AUDIO = 'audio_requests'
+  AUDIO = 'audio_requests',
+  FACE = 'face_requests',
+  MULTIMODAL = 'multimodal_requests'
+}
+
+export interface MLHistoryMetadataInput {
+  type: MLRequestType
+  prediction: string
+  confidence?: number
+  riskScore?: number
+  riskCategory?: string
+  modalitiesUsed?: string[]
+  additionalPrompt?: Record<string, unknown>
+  timestamp?: string
 }
 
 export interface MLHistoryQuery {
@@ -71,8 +84,9 @@ export interface MLHistoryResponse {
 
 export interface MLHistoryItem {
   id: string
+  type?: string
   prediction: {
-    result: string
+    result: unknown
   }
   inputData: Record<string, unknown>
   timestamp: string

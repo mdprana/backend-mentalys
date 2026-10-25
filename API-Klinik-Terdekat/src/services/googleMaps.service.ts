@@ -12,7 +12,7 @@ export class GoogleMapsService {
 
   async searchNearbyPlaces(params: SearchParams): Promise<PlaceDetails[]> {
     try {
-      const { location, radius, openNow } = params
+      const { location, radius, openNow, language = 'id' } = params
 
       const response = await this.client.placesNearby({
         params: {
@@ -22,7 +22,7 @@ export class GoogleMapsService {
           keyword: config.defaultKeywords,
           type: 'health',
           opennow: openNow,
-          language: 'id' as Language // Menggunakan bahasa Indonesia
+          language: language as Language
         }
       })
 
@@ -45,13 +45,13 @@ export class GoogleMapsService {
     }
   }
 
-  async getPlaceDetails(placeId: string): Promise<PlaceDetails> {
+  async getPlaceDetails(placeId: string, language: 'id' | 'en' = 'id'): Promise<PlaceDetails> {
     try {
       const response = await this.client.placeDetails({
         params: {
           key: config.googleMapsApiKey as string,
           place_id: placeId,
-          language: 'id' as Language,
+          language: language as Language,
           fields: [
             'name',
             'formatted_address',

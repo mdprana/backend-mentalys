@@ -1,4 +1,4 @@
-import { auth, db } from '../config/firebase.config'
+import { admin, auth, firebaseAdminReady } from '../config/firebase.config'
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -7,7 +7,6 @@ import {
   signOut,
   UserCredential
 } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
 
 export const authService = {
   async registerWithEmail(email: string, password: string) {
@@ -16,11 +15,17 @@ export const authService = {
       email,
       password
     )
-    await sendEmailVerification(userCredential.user)
-
     const uid = userCredential.user.uid
-    const userRef = doc(db, 'users', uid)
-    await setDoc(userRef, {
+
+    try {
+      await sendEmailVerification(userCredential.user)
+    } catch (error) {
+      await admin.auth().deleteUser(uid)
+      throw error
+    }
+
+    await firebaseAdminReady
+    await admin.firestore().collection('users').doc(uid).set({
       uid_firebase: uid,
       email
     })
@@ -36,6 +41,7 @@ export const authService = {
     return {
       uid: userCredential.user.uid,
       email: userCredential.user.email,
+      emailVerified: userCredential.user.emailVerified,
       idToken
     }
   },
@@ -47,6 +53,10 @@ export const authService = {
     if (user) {
       await user.delete()
     }
+  },
+  async deleteUserByUid(uid: string) {
+    await firebaseAdminReady
+    await admin.auth().deleteUser(uid)
   },
   async signOutUser() {
     try {

@@ -39,12 +39,13 @@ async function getServiceAccountKey() {
 }
 
 // Initialize Firebase Admin
-;(async () => {
+export const firebaseAdminReady = (async () => {
   const serviceAccount = await getServiceAccountKey()
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: process.env.FIREBASE_DATABASE_URL
   })
+  admin.firestore().settings({ ignoreUndefinedProperties: true })
 
   console.log('Firebase Admin Initialized')
 })()

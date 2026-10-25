@@ -8,6 +8,7 @@ export interface SearchParams {
   radius: number
   openNow?: boolean
   keyword?: string
+  language?: 'id' | 'en'
 }
 
 export interface PlacePhoto {

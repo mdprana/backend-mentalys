@@ -51,6 +51,26 @@ export const handwritingInputSchema = Joi.object({
   }).required()
 })
 
+export const historyMetadataSchema = Joi.object({
+  type: Joi.string()
+    .valid('quiz_requests', 'audio_requests', 'face_requests', 'multimodal_requests')
+    .required(),
+  prediction: Joi.string().required(),
+  confidence: Joi.number().min(0).max(1).optional(),
+  riskScore: Joi.number().min(0).max(1).optional(),
+  riskCategory: Joi.string().optional(),
+  modalitiesUsed: Joi.array().items(Joi.string()).optional(),
+  additionalPrompt: Joi.object().unknown(true).optional(),
+  timestamp: Joi.string()
+    .custom((value, helpers) => {
+      if (!isValidISODate(value)) {
+        return helpers.error('any.invalid')
+      }
+      return value
+    })
+    .optional()
+})
+
 export function isValidISODate(dateString: string): boolean {
   const iso8601Regex = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:?\d{2})?)?$/
   if (!iso8601Regex.test(dateString)) {

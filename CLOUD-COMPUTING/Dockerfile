@@ -1,26 +1,23 @@
-# Use the official lightweight Node.js 12 image.
-# https://hub.docker.com/_/node
-FROM node:20-alpine
+FROM node:20-alpine AS build
 
-# Create and change to the app directory.
 WORKDIR /usr/src/app
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure both package.json AND package-lock.json are copied.
-# Copying this separately prevents re-running npm install on every code change.
-COPY package.json yarn.lock ./
+COPY package*.json ./
+RUN npm ci --include=dev
 
-# Install production dependencies.
-RUN yarn install
-
-# Copy local code to the container image.
 COPY . ./
+RUN npm run build
 
-RUN yarn build
+FROM node:20-alpine AS runtime
 
-RUN rm -rf src
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY --from=build /usr/src/app/dist ./dist
 
 EXPOSE 8080
 
-# Run the web service on container startup.
-CMD [ "npm", "start" ]
+CMD ["npm", "start"]

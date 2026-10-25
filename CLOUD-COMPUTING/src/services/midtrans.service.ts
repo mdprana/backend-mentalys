@@ -1,8 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import axios from 'axios'
-import { doc, getDoc } from '@firebase/firestore'
-import { db } from '../config/firebase.config'
+import { admin, firebaseAdminReady } from '../config/firebase.config'
 import { Psychiatrist } from '../types/psychiatrist.type'
 
 const SERVER_KEY = process.env.MIDTRANS_SERVER_KEY
@@ -25,11 +24,11 @@ export const midtransService = {
     const filePath = path.join(__dirname, '../data/PsikiaterDummy.json')
     const psychiatristData = JSON.parse(fs.readFileSync(filePath, 'utf8'))
 
-    const userDocRef = doc(db, 'profiles', user.uid)
-    const userDocSnap = await getDoc(userDocRef)
+    await firebaseAdminReady
+    const userDocSnap = await admin.firestore().collection('profiles').doc(user.uid).get()
 
     // Validate user document exists
-    if (!userDocSnap.exists()) {
+    if (!userDocSnap.exists) {
       throw new Error('User profile not found')
     }
 

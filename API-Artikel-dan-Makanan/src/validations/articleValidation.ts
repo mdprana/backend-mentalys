@@ -38,10 +38,38 @@ export const validateContent = (content: Content): string | null => {
 }
 
 export const validateMentalState = (mentalState: string): string | null => {
-  if (mentalState && !Object.values(MentalState).includes(mentalState as MentalState)) {
+  if (mentalState && !Object.values(MentalState).includes(normalizeMentalState(mentalState))) {
     return `Invalid mental state. Must be one of: ${Object.values(MentalState).join(', ')}`
   }
   return null
+}
+
+export const normalizeMentalState = (mentalState: string): MentalState => {
+  const normalized = mentalState.trim().toLowerCase().replace(/\s+/g, '_').replace(/-/g, '_')
+
+  switch (normalized) {
+    case 'minimal':
+      return MentalState.MINIMAL
+    case 'mild':
+      return MentalState.MILD
+    case 'moderate':
+      return MentalState.MODERATE
+    case 'moderately_severe':
+      return MentalState.MODERATELY_SEVERE
+    case 'severe':
+      return MentalState.SEVERE
+    case 'high_risk':
+    case 'high_risk_safety_override':
+      return MentalState.HIGH_RISK
+    case 'mdd':
+    case 'pdd':
+    case 'psychot_depresn':
+    case 'psychotic_depression':
+    case 'depresn':
+    case 'depression':
+    default:
+      return MentalState.DEPRESSION
+  }
 }
 
 export const validateImageLink = (imageLink: string): string | null => {

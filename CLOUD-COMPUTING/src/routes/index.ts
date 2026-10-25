@@ -32,6 +32,7 @@ app.use('/api/ml', mlRouter)
 app.use('/api/psychiatrists', psychiatristRouter)
 // API untuk Midtrans
 app.use('/api/midtrans', midtransRouter)
+app.use('/midtrans', midtransRouter)
 app.use('*', notFound)
 app.use(globalErrorHandler)
 export default app

@@ -4,8 +4,7 @@ import { AuthRequestBody } from '../types/authRequest.type'
 import { authService } from '../services/auth.service'
 import { registrationSchema } from '../validations/auth.validation'
 import { formatJoiError } from '../utils/joiValidation'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { auth, db } from '../config/firebase.config'
+import { admin, firebaseAdminReady } from '../config/firebase.config'
 import { profileService } from '../services/profile.service'
 import { ProfileRequestBody } from '../types/profile.type'
 
@@ -23,8 +22,11 @@ export const registerUser = async (
     return res.status(400).json(validationError)
   }
 
+  let createdUid: string | undefined
+
   try {
     const userData = await authService.registerWithEmail(email, password)
+    createdUid = userData.uid
     const userProfile: ProfileRequestBody = {
       username: username!,
       firstName: firstName!,
@@ -37,18 +39,19 @@ export const registerUser = async (
     }
     if (userProfile.username) {
       const uid = userData.uid
-      const usernameQuery = query(
-        collection(db, 'profiles'),
-        where('username', '==', userProfile.username)
-      )
-      const usernameSnapshot = await getDocs(usernameQuery)
+      await firebaseAdminReady
+      const usernameSnapshot = await admin
+        .firestore()
+        .collection('profiles')
+        .where('username', '==', userProfile.username)
+        .get()
 
       if (!usernameSnapshot.empty) {
         const existingProfile = usernameSnapshot.docs[0].data()
 
         if (existingProfile.uid !== uid) {
           try {
-            await authService.deleteUser()
+            await authService.deleteUserByUid(uid)
           } catch (deleteError) {
             console.error('Failed to delete user after username conflict:', deleteError)
           }
@@ -61,20 +64,15 @@ export const registerUser = async (
       }
     }
 
-    await Promise.all([
-      Promise.resolve(userData),
-      profileService.createProfile(userData.uid, userProfile)
-    ]).then(() => {
-      return res.status(201).json({
-        status: 'success',
-        message: 'Email verifikasi telah dikirim. Silakan periksa email Anda.'
-      })
+    await profileService.createProfile(userData.uid, userProfile)
+    return res.status(201).json({
+      status: 'success',
+      message: 'Email verifikasi telah dikirim. Silakan periksa email Anda.'
     })
   } catch (error: unknown) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if (error instanceof Error && (error as any).code === 'invalid-argument') {
+    if (createdUid) {
       try {
-        await authService.deleteUser()
+        await authService.deleteUserByUid(createdUid)
       } catch (deleteError) {
         console.error('Failed to delete user after profile creation failure:', deleteError)
       }
@@ -97,14 +95,12 @@ export const loginUser = async (
 
   try {
     const userData = await authService.loginWithEmail(email, password)
-    const user = auth.currentUser
-    if (user && !user.emailVerified) {
+    if (!userData.emailVerified) {
       return res.status(403).json({
         status: 'fail',
         message: 'Email Anda belum terverifikasi. Silakan periksa email Anda.'
       })
     }
-    const idToken = await user?.getIdToken(true)
 
     const userDataNoToken = {
       uid: userData.uid,
@@ -114,7 +110,7 @@ export const loginUser = async (
       status: 'success',
       profile: await profileService.getProfile(userData.uid),
       data: userDataNoToken,
-      idToken
+      idToken: userData.idToken
     })
   } catch (error) {
     next(error)
@@ -133,9 +129,14 @@ export const resetPassword = async (
   }
 
   try {
-    const usersRef = collection(db, 'users')
-    const q = query(usersRef, where('email', '==', email))
-    const querySnapshot = await getDocs(q)
+    await firebaseAdminReady
+    const querySnapshot = await admin
+      .firestore()
+      .collection('users')
+      .where('email', '==', email)
+      .limit(1)
+      .get()
+
     if (querySnapshot.empty) {
       return res.status(404).json({
         status: 'fail',
